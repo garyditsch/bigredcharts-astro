@@ -1,6 +1,5 @@
 ---
 // Component Imports
-import Button from '../components/Button.astro';
 import YPRChart from '../components/YPRChart.tsx';
 import TotalYardsChart from '../components/TotalYardsChart.tsx';
 import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
@@ -23,7 +22,7 @@ import TotalRushTDChart from '../components/RushTDChart.tsx';
 		<header class="flex items-center justify-center h-[150px] bg-red-500">
 			<h1 class="text-white text-4xl font-bold">Big Red Charts</h1>
 		  </header>
-		<div class="grid grid-cols-2 gap-4 h-screen place-items-center mx-8">
+		<div class="grid grid-cols-2 gap-4 h-screen mx-8">
 			<div>
 				<div class="text-red-500 text-2xl font-bold mb-4">Yards Per Rush Chart</div>
 				<YPRChart client:only="react"/>

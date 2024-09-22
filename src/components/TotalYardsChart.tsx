@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
-import Plotly from 'plotly.js-basic-dist'; // Use the smaller Plotly bundle
 import Select from 'react-select';
 
 const schoolOptions = [
@@ -54,8 +53,8 @@ function TotalYardsChart() {
 
   const chartData = {
     schools: filteredData.map(d => d.school),
-    opponents: filteredData.map(d => d.home_team === d.school ? d.away_team : d.home_team),
-    statValues: filteredData.map(d => d.stat)
+    opponents: filteredData.map(d => (d.home_team === d.school ? d.away_team : d.home_team)),
+    statValues: filteredData.map(d => d.stat.toString()) // Convert numbers to strings
   };
 
   return (
@@ -82,7 +81,7 @@ function TotalYardsChart() {
               marker: {
                 color: chartData.schools.map(school => school === 'Nebraska' ? 'red' : 'lightgray'),
               },
-              hoverinfo: 'y+text+x',
+              hoverinfo: 'y+text', // Fixed hoverinfo
               name: 'Schools',
             }
           ]}
@@ -103,7 +102,7 @@ function TotalYardsChart() {
             })),
             margin: { l: 100, r: 150 },  // Adjust right margin to make room for annotations
           }}
-          config={{ Plotly }}
+          config={{ scrollZoom: true }}
         />
       ) : (
         <p>Please select schools to display the chart.</p>
