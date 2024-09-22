@@ -40,8 +40,6 @@ function PossessionTimeChart() {
     selectedSchools.includes(entry.school)
   ) : [];
 
-  const sortedData = filteredData.sort((a, b) => a.stat - b.stat);
-
   const chartData = {
     schools: filteredData.map(d => d.school),
     opponents: filteredData.map(d => d.home_team === d.school ? d.away_team : d.home_team),
