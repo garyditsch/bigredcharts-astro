@@ -1,6 +1,10 @@
 ---
 // Component Imports
 import Button from '../components/Button.astro';
+import YPRChart from '../components/YPRChart.tsx';
+import TotalYardsChart from '../components/TotalYardsChart.tsx';
+import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
+import TotalRushTDChart from '../components/RushTDChart.tsx';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -12,13 +16,30 @@ import Button from '../components/Button.astro';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
+		<title>Big Red Charts</title>
 	</head>
 
 	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+		<header class="flex items-center justify-center h-[150px] bg-red-500">
+			<h1 class="text-white text-4xl font-bold">Big Red Charts</h1>
+		  </header>
+		<div class="grid grid-cols-2 gap-4 h-screen place-items-center mx-8">
+			<div>
+				<div class="text-red-500 text-2xl font-bold mb-4">Yards Per Rush Chart</div>
+				<YPRChart client:only="react"/>
+			</div>
+			<div>
+				<div class="text-red-500 text-2xl font-bold mb-4">Total Yards Chart</div>
+				<TotalYardsChart client:only="react"/>
+			</div>
+			<div>
+				<div class="text-red-500 text-2xl font-bold mb-4">Possession Time Chart</div>
+				<PossessionTimeChart client:only="react"/>
+			</div>
+			<div>
+				<div class="text-red-500 text-2xl font-bold mb-4">Total Rush Touchdowns</div>
+				<TotalRushTDChart client:only="react"/>
+			</div>
 		</div>
 	</body>
 </html>
