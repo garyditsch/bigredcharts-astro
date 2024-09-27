@@ -29,7 +29,12 @@ const allData = {
 };
 
 function PossessionTimeChart() {
-  const [selectedSchools, setSelectedSchools] = useState<string[]>([]);
+  const [selectedSchools, setSelectedSchools] = useState<any[]>([
+    {
+        "value": "Nebraska",
+        "label": "Nebraska"
+    }
+  ]);
 
   const handleSelectChange = (selectedOptions: any) => {
     setSelectedSchools(selectedOptions.map((option: any) => option.value));

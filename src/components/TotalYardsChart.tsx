@@ -31,7 +31,12 @@ const allData = {
 const allOption = { value: '*', label: 'Select All' };
 
 function TotalYardsChart() {
-  const [selectedSchools, setSelectedSchools] = useState<any[]>([]);
+  const [selectedSchools, setSelectedSchools] = useState<any[]>([
+    {
+        "value": "Nebraska",
+        "label": "Nebraska"
+    }
+  ]);
 
   const handleSelectChange = (selected: any) => {
     if (selected && selected.some((option: any) => option.value === allOption.value)) {

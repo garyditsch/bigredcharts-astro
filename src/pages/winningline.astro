@@ -1,0 +1,72 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+import YPRChart from '../components/YPRChart.tsx';
+import TotalYardsChart from '../components/TotalYardsChart.tsx';
+import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
+import TotalRushTDChart from '../components/RushTDChart.tsx';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<MainLayout>
+	<!-- Story Intro Section -->
+	<div id="story_intro" class="w-full mx-auto px-8 py-2">
+		<div class="bg-white shadow-md rounded-lg p-10 flex flex-col md:flex-row items-start">
+			
+			<!-- Text Content Column -->
+			<div class="md:w-full md:pr-8">
+			<p class="mb-4 text-gray-700">
+				<h1 class="text-2xl text-gray-700">Are the Huskers winning with the offensive line?</h1>
+			</p>
+			<p class="my-4 text-gray-700">
+				<article class="prose lg:prose-base">
+					<p>These statistics only include games with <span class="font-bold">Big Ten vs. Big Ten</span> match-ups.</p>
+					<p>We decided on this so that games against non conference opponents or lower division schools do not influence the charts in an unfavorable way for teams, in either direction.</p>
+					<p>Games included are from the 2024 season</p>
+				</article>
+			</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Charts Section -->
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-auto mx-8 my-12">
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-4">Yards Per Rush Chart</div>
+			<YPRChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<article class="prose lg:prose-base">
+				<p class="">Yards per rush provides a commonly used rushing efficiency metric. It takes into consideration how many rushes your offense had in a game, plus the resulting yards gained from those plays.</p>
+				<p>One thing to consider is that in CFB yards lost because of sacks count against the total rushing yards (this is different than the NFL).</p>
+				<p>In this evaluation, we are not looking at how well the Huskers ran the footbal, we are using ypr as a proxy metric to understand if the offensive line is winning, therefore adjusting for sack yardage is not done here.</p>
+				<p>Additionally, this stat does not adust for yards before and after contact, therefore it is possible the line play is not great, but the running backs are just getting a lot of yards after contact.</p>
+				<p>In the context of the following metrics, we believe this metric is a great place to start a review.</p>
+			</article>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-4">Total Rushing Yards Chart</div>
+			<TotalYardsChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			Notes
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-4">Possession Time Chart</div>
+			<PossessionTimeChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			Notes
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-4">Total Rush Touchdowns</div>
+			<TotalRushTDChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			Notes
+		</div>
+	</div>
+</MainLayout>

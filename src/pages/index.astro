@@ -1,44 +1,58 @@
 ---
 // Component Imports
+import MainLayout from '../layouts/MainLayout.astro'
 import YPRChart from '../components/YPRChart.tsx';
 import TotalYardsChart from '../components/TotalYardsChart.tsx';
 import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
 import TotalRushTDChart from '../components/RushTDChart.tsx';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+
+const { isMobile = false } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Big Red Charts</title>
-	</head>
+<MainLayout>
+  <!-- Story Intro Section -->
+  <div id="story_intro" class="mb-8">
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <div class="flex flex-col md:flex-row">
+        
+        <!-- Text Content Column -->
+        <div class="md:w-1/3 md:pr-6">
+          <h2 class="text-2xl font-bold mb-4 text-red-600">Introduction</h2>
+          <p class="mb-4 text-gray-700">
+            On November 28, 2022, Matt Rhule held his introductory press conference and laid out his vision for the type of team he wanted to coach at Nebraska.
+          </p>
+          <p class="mb-4 text-gray-700">Characteristics of that team:</p>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Tough</li>
+            <li>Hard Working</li>
+            <li>Competitive at Everything</li>
+            <li>Physical</li>
+            <li>Balanced</li>
+            <li>Win the line of scrimmage</li>
+            <li>Fast, explosive players</li>
+            <li>Speed</li>
+            <li>Great quarterback play</li>
+            <li>Physical team that can control the line of scrimmage and game</li>
+          </ul>
+        </div>
 
-	<body>
-		<header class="flex items-center justify-center h-[150px] bg-red-500">
-			<h1 class="text-white text-4xl font-bold">Big Red Charts</h1>
-		  </header>
-		<div class="grid grid-cols-2 gap-4 h-screen mx-8">
-			<div>
-				<div class="text-red-500 text-2xl font-bold mb-4">Yards Per Rush Chart</div>
-				<YPRChart client:only="react"/>
-			</div>
-			<div>
-				<div class="text-red-500 text-2xl font-bold mb-4">Total Yards Chart</div>
-				<TotalYardsChart client:only="react"/>
-			</div>
-			<div>
-				<div class="text-red-500 text-2xl font-bold mb-4">Possession Time Chart</div>
-				<PossessionTimeChart client:only="react"/>
-			</div>
-			<div>
-				<div class="text-red-500 text-2xl font-bold mb-4">Total Rush Touchdowns</div>
-				<TotalRushTDChart client:only="react"/>
-			</div>
-		</div>
-	</body>
-</html>
+        <!-- YouTube Video Column -->
+        <div class="md:w-2/3 mt-6 md:mt-0">
+          <div class="aspect-video">
+            <iframe 
+              src="https://www.youtube.com/embed/oxEkddK9tEo?start=937" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              loading="lazy"
+              class="w-full h-full rounded-lg"
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</MainLayout>

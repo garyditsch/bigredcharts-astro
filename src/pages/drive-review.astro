@@ -1,0 +1,35 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+import DriveAnalysis from '../components/DriveAnalysis';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<MainLayout>
+	<!-- Story Intro Section -->
+	<div id="story_intro" class="w-full mx-auto px-8 py-4">
+		<div class="bg-white shadow-md rounded-lg p-10 flex flex-col md:flex-row items-start">
+			
+			<!-- Text Content Column -->
+			<div class="md:w-full md:pr-8">
+				<p class="mb-4 text-gray-700">
+					<h1 class="text-2xl text-gray-700">Are the Huskers scoring efficiently, while avoiding negative outcomes?</h1>
+				</p>
+				<p class="my-4 text-gray-700">
+					<p>Offensive Drive Review</p>
+					<p>Games included are from the 2024 season</p>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Charts Section -->
+	<div id="story_intro" class="w-full mx-auto px-8 py-4">
+		<div class="bg-white shadow-md rounded-lg p-10 flex flex-col md:flex-row items-start">
+			<DriveAnalysis />
+		</div>
+	</div>
+	
+</MainLayout>
