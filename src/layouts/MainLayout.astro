@@ -46,30 +46,5 @@ import Sidebar from '../components/Sidebar.astro'
     <Sidebar isMobile />
   </div>
 
-  <!-- Tailwind CSS JS (Optional for Interactivity) -->
-  <script>
-    // Toggle Mobile Sidebar
-    const menuButton = document.getElementById('menu-button');
-    const mobileSidebar = document.getElementById('mobile-sidebar');
-    const closeButton = mobileSidebar.querySelector('#close-button');
-
-    menuButton.addEventListener('click', () => {
-      mobileSidebar.classList.remove('hidden');
-    });
-
-    if (closeButton) {
-      closeButton.addEventListener('click', () => {
-        mobileSidebar.classList.add('hidden');
-      });
-    }
-
-    // Close sidebar when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === mobileSidebar) {
-        mobileSidebar.classList.add('hidden');
-      }
-    });
-  </script>
-
 </body>
 </html>
