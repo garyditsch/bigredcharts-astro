@@ -113,6 +113,7 @@ function PossessionTimeChart() {
             }
           ]}
           layout={{
+            autosize: true,
             title: 'Total Possession Time',
             xaxis: { title: 'Possession Time (seconds)' },
             yaxis: {
@@ -133,10 +134,11 @@ function PossessionTimeChart() {
               align: 'right',
               xshift: 10  // Shift text a bit to the right of the bars
             })),
-            height: chartHeight,
             margin: { l: 100, r: 150 },  // Adjust right margin to make room for annotations
           }}
-          config={{ scrollZoom: true }}  // Removed Plotly from config
+          useResizeHandler={true}
+          style={{ width: '100%', height: `${chartHeight}px` }}
+          config={{ scrollZoom: true, responsive: true }}  // Removed Plotly from config
         />
       ) : (
         <p>Please select schools to display the chart.</p>

@@ -66,7 +66,6 @@ function TotalYardsChart() {
 
   // Calculate the chart height
   const barHeight = 30; // Height per bar in pixels
-  
   const minChartHeight = 400; // or any suitable minimum height
   const calculatedHeight = chartData.labels.length * barHeight + 100;
   const chartHeight = Math.max(minChartHeight, calculatedHeight);
@@ -102,6 +101,7 @@ function TotalYardsChart() {
             },
           ]}
           layout={{
+            autosize: true,
             title: 'Total Rushing Yards',
             xaxis: { title: 'Total Rushing Yards' },
             yaxis: {
@@ -122,10 +122,11 @@ function TotalYardsChart() {
               align: 'right',
               xshift: 10,
             })),
-            height: chartHeight, // Set the dynamic height
             margin: { l: 100, r: 150 },
           }}
-          config={{ scrollZoom: true }}
+          useResizeHandler={true}
+          style={{ width: '100%', height: `${chartHeight}px` }}
+          config={{ scrollZoom: true, responsive: true }}  // Removed Plotly from config
         />
       ) : (
         <p>Please select schools to display the chart.</p>
