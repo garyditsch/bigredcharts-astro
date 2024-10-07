@@ -2,8 +2,7 @@ import React from 'react';
 
 const DriveAnalysis = () => {
   // Sample data
-  const plays = {'UTEP': ['TD', 'DOWNS', 'PUNT', 'FUMBLE', 'TD', 'TD', 'TD', 'TD', 'FG', 'DOWNS', 'PUNT'], 'Colorado': ['TD', 'PUNT', 'MISSED FG', 'TD', 'PUNT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF GAME'], 'Northern Iowa': ['TD', 'TD', 'TD', 'DOWNS', 'FG', 'FG', 'INT', 'TD', 'END OF GAME'], 'Illinois': ['PUNT', 'FG', 'TD', 'INT', 'TD', 'PUNT', 'TD', 'PUNT', 'MISSED FG', 'END OF 4TH QUARTER', 'Uncategorized']}
-
+  const plays = {'UTEP': ['TD', 'DOWNS', 'PUNT', 'FUMBLE', 'TD', 'TD', 'TD', 'TD', 'FG', 'DOWNS', 'PUNT'], 'Colorado': ['TD', 'PUNT', 'MISSED FG', 'TD', 'PUNT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF GAME'], 'Northern Iowa': ['TD', 'TD', 'TD', 'DOWNS', 'FG', 'FG', 'INT', 'TD', 'END OF GAME'], 'Illinois': ['PUNT', 'FG', 'TD', 'INT', 'TD', 'PUNT', 'TD', 'PUNT', 'MISSED FG', 'END OF 4TH QUARTER', 'Uncategorized'], 'Purdue': ['PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'TD', 'TD', 'TD', 'END OF 4TH QUARTER'], 'Rutgers': ['PUNT', 'TD', 'PUNT', 'INT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF 4TH QUARTER']}
   // Helper function to determine the background color based on category and event
   const getBgColor = (category:any, event:any) => {
     switch (category) {
