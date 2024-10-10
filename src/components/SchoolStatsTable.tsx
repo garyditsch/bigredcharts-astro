@@ -3,6 +3,7 @@ import React from 'react';
 interface SchoolStat {
   school: string;
   averageStat: number;
+  isTop33Percent: boolean;
 }
 
 interface SchoolStatsTableProps {
