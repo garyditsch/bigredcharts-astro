@@ -1,4 +1,5 @@
 import React from 'react';
+import getLogoSrc from '../utils/getLogo';
 
 interface SchoolStat {
   school: string;
@@ -30,8 +31,13 @@ const SchoolStatsTable: React.FC<SchoolStatsTableProps> = ({ data = [] }) => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {data.map((item) => (
-            <tr key={item.school} className={`${item.school == 'Nebraska' ? 'bg-red-600 text-white' : 'text-gray-900'}`}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+            <tr key={item.school} className={`${item.school == 'Nebraska' ?  '!border-4 !border-red-500' : ''}`}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium flex items-center">
+                <img
+                  src={getLogoSrc(item.school)}
+                  alt={`${item.school} logo`}
+                  className='h-6 w-6 mr-2'
+                />
                 {item.school}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm">

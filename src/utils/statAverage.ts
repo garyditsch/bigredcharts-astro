@@ -6,7 +6,11 @@ export interface SchoolAverage {
   isTop33Percent: boolean;
 }
 
-function calculateSchoolAverages(data: any[]): SchoolAverage[] {
+function calculateSchoolAverages(
+    data: any[], 
+    statField: string,
+    isHigherBetter: boolean
+  ): SchoolAverage[] {
   // Calculate total stats per school
   const schoolTotals: { [key: string]: number[] } = {};
 
@@ -14,7 +18,7 @@ function calculateSchoolAverages(data: any[]): SchoolAverage[] {
     if (!schoolTotals[item.school]) {
       schoolTotals[item.school] = [];
     }
-    schoolTotals[item.school].push(item.stat);
+    schoolTotals[item.school].push(Number(item[statField]));
   });
 
   // Calculate average stats per school
@@ -26,7 +30,9 @@ function calculateSchoolAverages(data: any[]): SchoolAverage[] {
   });
 
   // Sort schools by averageStat in descending order
-  averages.sort((a, b) => b.averageStat - a.averageStat);
+  averages.sort((a, b) => {
+    return isHigherBetter ? b.averageStat - a.averageStat: a.averageStat - b.averageStat
+  });
 
   // Determine the index that separates the top 33%
   const top33PercentIndex = Math.ceil(averages.length / 3);
