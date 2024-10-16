@@ -5,6 +5,8 @@ import YPRChart from '../components/YPRChart.tsx';
 import TotalYardsChart from '../components/TotalYardsChart.tsx';
 import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
 import TotalRushTDChart from '../components/RushTDChart.tsx';
+import SacksAllowedChart from '../components/SacksAllowedChart.tsx';
+import TflAllowedChart from '../components/TflAllowedChart';
 import SchoolStatsTable from '../components/SchoolStatsTable.tsx';
 import calculateSchoolAverages from '../utils/statAverage';
 import dataframes from '../data/BoxScoreAnalysis';
@@ -24,6 +26,7 @@ const yardsAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_Sch
 const rushTdAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_RushTD, 'stat', true)
 const sacksAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_Sacks, 'opponent_stat_value', false)
 const tflAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_Tfl, 'opponent_stat_value', false)
+const qbHurriesAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_QBHurries, 'opponent_stat_value', false)
 
 
 const rushTdAverageWinning =  rushTdAverages.find(school => school.school === 'Nebraska')?.isTop33Percent;
@@ -31,6 +34,7 @@ const yprAverageWinning =  yprAverages.find(school => school.school === 'Nebrask
 const yardsAverageWinning =  yardsAverages.find(school => school.school === 'Nebraska')?.isTop33Percent;
 const sacksAverageWinning =  sacksAverages.find(school => school.school === 'Nebraska')?.isTop33Percent;
 const tflAverageWinning =  tflAverages.find(school => school.school === 'Nebraska')?.isTop33Percent;
+const qbHurriesAverageWinning =  qbHurriesAverages.find(school => school.school === 'Nebraska')?.isTop33Percent;
 
 ---
 
@@ -132,7 +136,7 @@ const tflAverageWinning =  tflAverages.find(school => school.school === 'Nebrask
 						  QB Hurries Allowed
 						</td>
 						<td class="px-6 py-4 whitespace-nowrap text-sm">
-						  N/A
+							{qbHurriesAverageWinning !== undefined ? (qbHurriesAverageWinning ? 'Yes' : 'No') : 'Data not available'}
 						</td>
 					</tr>
 					 <tr class="text-gray-900">
@@ -159,17 +163,6 @@ const tflAverageWinning =  tflAverages.find(school => school.school === 'Nebrask
 		<div class="bg-white shadow-md rounded-lg p-6">
 			<SchoolStatsTable data={yprAverages} />
 		</div>
-		<div class="bg-white shadow-md rounded-lg p-6">
-		</div>
-		<div class="bg-white shadow-md rounded-lg p-6">
-			<article class="prose lg:prose-base">
-				<p class="">Yards per rush provides a commonly used rushing efficiency metric. It takes into consideration how many rushes your offense had in a game, plus the resulting yards gained from those plays.</p>
-				<p>One thing to consider is that in CFB yards lost because of sacks count against the total rushing yards (this is different than the NFL).</p>
-				<p>In this evaluation, we are not looking at how well the Huskers ran the footbal, we are using ypr as a proxy metric to understand if the offensive line is winning, therefore adjusting for sack yardage is not done here.</p>
-				<p>Additionally, this stat does not adust for yards before and after contact, therefore it is possible the line play is not great, but the running backs are just getting a lot of yards after contact.</p>
-				<p>In the context of the following metrics, we believe this metric is a great place to start a review.</p>
-			</article>
-		</div>
 
 		<!-- Total Rush Yards -->
 
@@ -184,7 +177,7 @@ const tflAverageWinning =  tflAverages.find(school => school.school === 'Nebrask
 		<!-- Total Rush Touchdowns -->
 
 		<div class="bg-white shadow-md rounded-lg p-6">
-			<div class="text-red-500 text-2xl font-bold mb-4">Total Rush Touchdowns</div>
+			<div class="text-red-500 text-2xl font-bold mb-4">Total Rushing Touchdowns</div>
 			<TotalRushTDChart client:only="react"/>
 		</div>
 		<div class="bg-white shadow-md rounded-lg p-6">
@@ -202,11 +195,35 @@ const tflAverageWinning =  tflAverages.find(school => school.school === 'Nebrask
 		</div>
 		<div class="bg-white shadow-md rounded-lg p-6">
 			<div class="text-red-500 text-2xl font-bold mb-4">Sacks Allowed</div>
+			<SacksAllowedChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
 			<SchoolStatsTable data={sacksAverages} />
 		</div>
 		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-4">QB Hurries Allowed</div>
+			<!-- <TflAllowedChart client:only="react"/> -->
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<SchoolStatsTable data={qbHurriesAverages} />
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
 			<div class="text-red-500 text-2xl font-bold mb-4">Tackles for Loss Allowed</div>
+			<TflAllowedChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
 			<SchoolStatsTable data={tflAverages} />
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<article class="prose lg:prose-base">
+				<p class="">Yards per rush provides a commonly used rushing efficiency metric. It takes into consideration how many rushes your offense had in a game, plus the resulting yards gained from those plays.</p>
+				<p>One thing to consider is that in CFB yards lost because of sacks count against the total rushing yards (this is different than the NFL).</p>
+				<p>In this evaluation, we are not looking at how well the Huskers ran the footbal, we are using ypr as a proxy metric to understand if the offensive line is winning, therefore adjusting for sack yardage is not done here.</p>
+				<p>Additionally, this stat does not adust for yards before and after contact, therefore it is possible the line play is not great, but the running backs are just getting a lot of yards after contact.</p>
+				<p>In the context of the following metrics, we believe this metric is a great place to start a review.</p>
+			</article>
 		</div>
 	</div>
 </MainLayout>
