@@ -1,22 +1,9 @@
 import React from 'react';
+import gameResults from '../data/GameResults';
 
 const NebraskaGameVisualization = () => {
   // Sample data
-  const data = {
-    2024: ["Nebraska", "Nebraska", "Nebraska", "Illinois", "Nebraska", "Nebraska"],
-    2023: ["Minnesota", "Colorado", "Nebraska", "Nebraska", "Michigan", "Nebraska", "Nebraska", "Nebraska", "Michigan State", "Maryland", "Wisconsin", "Iowa"], 
-    2022: ["Northwestern", "Nebraska", "Georgia Southern", "Oklahoma", "Nebraska", "Nebraska", "Purdue", "Illinois", "Minnesota", "Michigan", "Wisconsin", "Nebraska"],
-    2021: ["Illinois", "Nebraska", "Nebraska", "Oklahoma", "Michigan State", "Nebraska", "Michigan", "Minnesota", "Purdue", "Ohio State", "Wisconsin", "Iowa"],
-    2020: ["Ohio State", "Northwestern", "Nebraska", "Illinois", "Iowa", "Nebraska", "Minnesota", "Nebraska"],
-    2019: ["Nebraska", "Colorado", "Nebraska", "Nebraska", "Ohio State", "Nebraska", "Minnesota", "Indiana", "Purdue", "Wisconsin", "Nebraska", "Iowa"],
-    2018: ["Colorado", "Troy", "Michigan", "Purdue", "Wisconsin", "Northwestern", "Nebraska", "Nebraska", "Ohio State", "Nebraska", "Nebraska", "Iowa"],
-    2017: ["Nebraska", "Oregon", "Northern Illinois", "Nebraska", "Nebraska", "Wisconsin", "Ohio State", "Nebraska", "Northwestern", "Minnesota", "Penn State", "Iowa"],
-    2016: ["Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Wisconsin", "Ohio State", "Nebraska", "Nebraska", "Iowa"],
-    2015: ["BYU", "Nebraska", "Miami", "Nebraska", "Illinois", "Wisconsin", "Nebraska", "Northwestern", "Purdue", "Nebraska", "Nebraska", "Iowa"],
-    2014: ["Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Michigan State", "Nebraska", "Nebraska", "Nebraska", "Wisconsin", "Minnesota", "Nebraska"],
-    2013: ["Nebraska", "Nebraska", "UCLA", "Nebraska", "Nebraska", "Nebraska", "Minnesota", "Nebraska", "Nebraska", "Michigan State", "Nebraska", "Iowa"],
-    2012: ["Nebraska", "UCLA", "Nebraska", "Nebraska", "Nebraska", "Ohio State", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska", "Nebraska"]
-};
+  const data = gameResults;
 
   const wins = 5;
 
