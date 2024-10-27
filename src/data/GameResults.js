@@ -1,5 +1,5 @@
 const gameResults = {
-    2024: ["Nebraska", "Nebraska", "Nebraska", "Illinois", "Nebraska", "Nebraska", "Indiana"],
+    2024: ["Nebraska", "Nebraska", "Nebraska", "Illinois", "Nebraska", "Nebraska", "Indiana", "Ohio State"],
     2023: ["Minnesota", "Colorado", "Nebraska", "Nebraska", "Michigan", "Nebraska", "Nebraska", "Nebraska", "Michigan State", "Maryland", "Wisconsin", "Iowa"], 
     2022: ["Northwestern", "Nebraska", "Georgia Southern", "Oklahoma", "Nebraska", "Nebraska", "Purdue", "Illinois", "Minnesota", "Michigan", "Wisconsin", "Nebraska"],
     2021: ["Illinois", "Nebraska", "Nebraska", "Oklahoma", "Michigan State", "Nebraska", "Michigan", "Minnesota", "Purdue", "Ohio State", "Wisconsin", "Iowa"],

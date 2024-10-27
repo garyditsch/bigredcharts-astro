@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DriveAnalysis = () => {
-  // Sample data
+  // Drive data is updated manually to correct for some items, like 'Downs' listed for turnover on 4th down
   const plays = {
     'UTEP': ['TD', 'DOWNS', 'PUNT', 'FUMBLE', 'TD', 'TD', 'TD', 'TD', 'FG', 'DOWNS', 'PUNT'], 
     'Colorado': ['TD', 'PUNT', 'MISSED FG', 'TD', 'PUNT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF GAME'], 
@@ -9,7 +9,8 @@ const DriveAnalysis = () => {
     'Illinois': ['PUNT', 'FG', 'TD', 'INT', 'TD', 'PUNT', 'TD', 'PUNT', 'MISSED FG', 'END OF 4TH QUARTER', 'Uncategorized'], 
     'Purdue': ['PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'TD', 'TD', 'TD', 'END OF 4TH QUARTER'], 
     'Rutgers': ['PUNT', 'TD', 'PUNT', 'INT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF 4TH QUARTER'],
-    'Indiana': ['PUNT', 'FUMBLE', 'TD', 'PUNT', 'PUNT', 'INT', 'INT', 'DOWNS', 'FUMBLE', 'INT', 'DOWNS']
+    'Indiana': ['PUNT', 'FUMBLE', 'TD', 'PUNT', 'PUNT', 'INT', 'INT', 'DOWNS', 'FUMBLE', 'INT', 'DOWNS'],
+    'Ohio State': ['PUNT', 'PUNT', 'PUNT', 'FG', 'PUNT', 'FG', 'FG', 'DOWNS', 'PUNT', 'TD', 'PUNT', 'INT']
   }
 
 
