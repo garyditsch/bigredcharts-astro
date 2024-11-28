@@ -8,6 +8,7 @@ import TotalRushTDChart from '../components/RushTDChart.tsx';
 import SacksAllowedChart from '../components/SacksAllowedChart.tsx';
 import TflAllowedChart from '../components/TflAllowedChart';
 import SchoolStatsTable from '../components/SchoolStatsTable.tsx';
+import QBHurriesAllowedChart from '../components/QBHurriesAllowedChart.tsx';
 import calculateSchoolAverages from '../utils/statAverage';
 import dataframes from '../data/BoxScoreAnalysis';
 
@@ -206,7 +207,7 @@ const qbHurriesAverageWinning =  qbHurriesAverages.find(school => school.school 
 		</div>
 		<div class="bg-white shadow-md rounded-lg p-6">
 			<div class="text-red-500 text-2xl font-bold mb-4">QB Hurries Allowed</div>
-			<!-- <TflAllowedChart client:only="react"/> -->
+			<QBHurriesAllowedChart client:only="react" />
 		</div>
 		<div class="bg-white shadow-md rounded-lg p-6">
 			<div class="text-red-500 text-2xl font-bold mb-2">QB Hurries Allowed</div>

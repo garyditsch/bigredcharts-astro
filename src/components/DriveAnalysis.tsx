@@ -2,17 +2,7 @@ import React from 'react';
 
 const DriveAnalysis = () => {
   // Drive data is updated manually to correct for some items, like 'Downs' listed for turnover on 4th down
-  const plays = {
-    'UTEP': ['TD', 'DOWNS', 'PUNT', 'FUMBLE', 'TD', 'TD', 'TD', 'TD', 'FG', 'DOWNS', 'PUNT'], 
-    'Colorado': ['TD', 'PUNT', 'MISSED FG', 'TD', 'PUNT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF GAME'], 
-    'Northern Iowa': ['TD', 'TD', 'TD', 'DOWNS', 'FG', 'FG', 'INT', 'TD', 'END OF GAME'], 
-    'Illinois': ['PUNT', 'FG', 'TD', 'INT', 'TD', 'PUNT', 'TD', 'PUNT', 'MISSED FG', 'END OF 4TH QUARTER', 'Uncategorized'], 
-    'Purdue': ['PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'TD', 'TD', 'TD', 'END OF 4TH QUARTER'], 
-    'Rutgers': ['PUNT', 'TD', 'PUNT', 'INT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF 4TH QUARTER'],
-    'Indiana': ['PUNT', 'FUMBLE', 'TD', 'PUNT', 'PUNT', 'INT', 'INT', 'DOWNS', 'FUMBLE', 'INT', 'DOWNS'],
-    'Ohio State': ['PUNT', 'PUNT', 'PUNT', 'FG', 'PUNT', 'FG', 'FG', 'DOWNS', 'PUNT', 'TD', 'PUNT', 'INT']
-  }
-
+  const plays = {'UTEP': ['TD', 'DOWNS', 'PUNT', 'FUMBLE', 'TD', 'TD', 'TD', 'TD', 'FG', 'DOWNS', 'PUNT'], 'Colorado': ['TD', 'PUNT', 'MISSED FG', 'TD', 'PUNT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF GAME'], 'Northern Iowa': ['TD', 'TD', 'TD', 'DOWNS', 'FG', 'FG', 'INT', 'TD', 'END OF GAME'], 'Illinois': ['PUNT', 'FG', 'TD', 'INT', 'TD', 'PUNT', 'TD', 'PUNT', 'MISSED FG', 'END OF 4TH QUARTER', 'Uncategorized'], 'Purdue': ['PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'PUNT', 'MISSED FG', 'TD', 'TD', 'TD', 'END OF 4TH QUARTER'], 'Rutgers': ['PUNT', 'TD', 'PUNT', 'INT', 'TD', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'PUNT', 'END OF 4TH QUARTER'], 'Indiana': ['PUNT', 'DOWNS', 'TD', 'PUNT', 'PUNT', 'DOWNS', 'INT', 'DOWNS', 'DOWNS', 'INT', 'DOWNS'], 'Ohio State': ['PUNT', 'PUNT', 'PUNT', 'FG', 'PUNT', 'FG', 'FG', 'DOWNS', 'PUNT', 'TD', 'PUNT', 'INT'], 'UCLA': ['PUNT', 'TD', 'PUNT', 'PUNT', 'END OF HALF', 'INT TD', 'DOWNS', 'TD', 'DOWNS', 'TD', 'INT'], 'USC': ['PUNT', 'PUNT', 'TD', 'INT', 'PUNT', 'END OF HALF', 'FG', 'PUNT', 'FG', 'PUNT', 'INT'], 'Wisconsin': ['TD', 'PUNT', 'FUMBLE', 'TD', 'PUNT', 'TD', 'FG', 'FG', 'TD', 'FG', 'TD', 'DOWNS']}
 
   
   // Helper function to determine the background color based on category and event
@@ -24,7 +14,7 @@ const DriveAnalysis = () => {
         return 'bg-gray-300';
       case 'turnover':
         if (event === 'FUMBLE' || event === 'FUMBLE RETURN TD') return 'bg-[#800080]';
-        if (event === 'INT') return 'bg-[#0000ff]'; // Blue
+        if (event === 'INT' || event == 'INT TD') return 'bg-[#0000ff]'; // Blue
         if (event === 'MISSED FG') return 'bg-[#DDA0DD]'; // Approximating 'plum' with purple-400
         if (event === 'Safety') return 'bg-black';
         return 'bg-gray-300';

@@ -5,7 +5,7 @@ const NebraskaGameVisualization = () => {
   // Sample data
   const data = gameResults;
 
-  const wins = 5;
+  const wins = 6;
 
   // Helper function to count the number of Nebraska wins in each season
    const countWins = (games: string[]) => {
