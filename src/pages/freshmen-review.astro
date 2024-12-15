@@ -1,0 +1,27 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+import PlayerTable from '../components/PlayerTable';
+
+import freshmen_data from '../data/PlayerRoster';
+
+const freshmen_count = freshmen_data.length
+---
+
+<MainLayout>
+	<!-- Story Intro Section -->
+	<div id="story_intro" class="w-full mx-auto px-8 py-4">
+		
+	</div>
+	
+	<!-- Charts Section -->
+    <div class="w-full mx-auto px-8 py-4">
+        <div class="bg-gray-300 shadow-md rounded-lg p-10 flex flex-col md:flex-row space-x-4">
+          <div class="w-full">
+			<h2 class="text-2xl text-gray-900">Freshmen</h2>
+            <PlayerTable data={freshmen_data} />
+          </div>
+        </div>
+      </div>
+	
+</MainLayout>
