@@ -1,32 +1,61 @@
 import React, { useState } from 'react';
 
+// {'id': 4569586, 
+// 'first_name': 'Ty', 
+// 'last_name': 'Robinson', 
+// 'team': 'Nebraska', 
+// 'height': 78.0, 
+// 'weight': 310.0, 
+// 'jersey': 9.0, 
+// 'year': 4.0, 
+// 'position': 'DL', 
+// 'home_city': 'Gilbert', 
+// 'home_state': 'AZ', 
+// 'home_country': 'USA', 
+// 'home_latitude': 33.3527632, 
+// 'home_longitude': -111.7890373, 
+// 'home_county_fips': '04013', 
+// 'recruit_ids': array([46974], 
+// dtype=int32)},
+
 
 // Define the type for the data prop
-interface Player {
+interface Roster {
+  id: number;
   first_name: string;
   last_name: string;
-  year: number;
-  position: string;
-  snaps: number;
-  season: number;
-  game: string;
+  team: string;
+  height: any;
+  weight: any;
+  jersey: any;
+  year: any;
+  position: any;
+  home_city: any;
+  home_state: any;
+  home_country: any;
 }
 
-interface PlayerTableProps {
-  data: Player[]; // Array of players passed as props
+
+
+interface PlayerTableWithFiltersProps {
+  data: Roster[]; // Array of players passed as props
 }
 
-const PlayerTable: React.FC<PlayerTableProps> = ({ data }) => {
-  const [gameFilter, setGameFilter] = useState<string>('');
+const RosterTableWithFilters: React.FC<PlayerTableWithFiltersProps> = ({ data }) => {
+  const [yearFilter, setYearFilter] = useState<number>();
   const [lastNameFilter, setLastNameFilter] = useState<string>('');
+  const [positionFilter, setPositionFilter] = useState<string>('')
 
   // Filter logic
   const filteredData = data.filter((player) => {
-    const matchesGame = gameFilter ? player.game === gameFilter : true; // Exact match for game
+    const matchesYear = yearFilter ? player.year === yearFilter : true; // Exact match for game
     const matchesLastName = lastNameFilter
       ? player.last_name.toLowerCase().includes(lastNameFilter.toLowerCase())
       : true;
-    return matchesGame && matchesLastName;
+    const matchesPosition = positionFilter
+      ? player.position.toLowerCase().includes(positionFilter.toLowerCase())
+      : true;
+    return matchesYear && matchesLastName && matchesPosition;
   });
 
   return (
@@ -35,14 +64,28 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ data }) => {
       <div className="flex flex-col md:flex-row space-x-4 mb-4">
         <div className="flex-1">
           <label className="block text-sm font-medium text-gray-700">
-            Filter by Game
+            Filter by Year (leave empty for all)
+          </label>
+          <input
+            type="number"
+            className="mt-1 block w-full border rounded-md p-2"
+            placeholder="Enter value (1, 2, 3, 4)"
+            value={yearFilter !== undefined ? yearFilter : ''}
+            onChange={(e) =>
+              setYearFilter(e.target.value ? parseInt(e.target.value, 10) : undefined)
+            }
+          />
+        </div>
+        <div className="flex-1">
+          <label className="block text-sm font-medium text-gray-700">
+            Filter by Position
           </label>
           <input
             type="text"
             className="mt-1 block w-full border rounded-md p-2"
-            placeholder="Enter game name"
-            value={gameFilter}
-            onChange={(e) => setGameFilter(e.target.value)}
+            placeholder="Enter position"
+            value={positionFilter}
+            onChange={(e) => setPositionFilter(e.target.value)}
           />
         </div>
         <div className="flex-1">
@@ -68,9 +111,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ data }) => {
               <th className="px-4 py-2 text-left">Last Name</th>
               <th className="px-4 py-2 text-left">Year</th>
               <th className="px-4 py-2 text-left">Position</th>
-              <th className="px-4 py-2 text-left">Snaps</th>
-              <th className="px-4 py-2 text-left">Season</th>
-              <th className="px-4 py-2 text-left">Game</th>
             </tr>
           </thead>
           <tbody>
@@ -80,9 +120,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ data }) => {
                 <td className="px-4 py-2">{player.last_name}</td>
                 <td className="px-4 py-2">{player.year}</td>
                 <td className="px-4 py-2">{player.position}</td>
-                <td className="px-4 py-2">{player.snaps}</td>
-                <td className="px-4 py-2">{player.season}</td>
-                <td className="px-4 py-2">{player.game}</td>
               </tr>
             ))}
           </tbody>
@@ -92,4 +129,4 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ data }) => {
   );
 };
 
-export default PlayerTable;
+export default RosterTableWithFilters;

@@ -1,13 +1,13 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import PlayerTable from '../components/PlayerTable.tsx'; // Import React component
-import freshmen_data from '../data/FreshmenRoster.js'; // Pass data to React component
+import sophomore_data from '../data/SophomoreRoster.js'; // Pass data to React component
 ---
 
 <MainLayout>
   <!-- Story Intro Section -->
   <div id="story_intro" class="w-full mx-auto px-8 py-4">
-    <h1 class="text-3xl font-bold">Freshmen Roster</h1>
+    <h1 class="text-3xl font-bold">Sophomore Roster</h1>
     <p>Filter and explore the player roster below:</p>
 	<p class="py-4">This data only represents offensive and defensive snaps, it does not include special teams. Snaps are PFF counts, as reported by Husker Online.</p>
   </div>
@@ -16,7 +16,7 @@ import freshmen_data from '../data/FreshmenRoster.js'; // Pass data to React com
   <div class="w-full mx-auto px-8 py-4">
     <div class="bg-gray-300 shadow-md rounded-lg p-10">
       <!-- React Component with Filters -->
-      <PlayerTable data={freshmen_data} client:visible />
+      <PlayerTable data={sophomore_data} client:visible />
     </div>
   </div>
 </MainLayout>

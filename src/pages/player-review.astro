@@ -1,11 +1,9 @@
 ---
 // Component Imports
 import MainLayout from '../layouts/MainLayout.astro';
-import PlayerTable from '../components/PlayerTable';
+import PlayerTableWithFilters from '../components/RosterTable.tsx';
 
-import freshmen_data from '../data/PlayerRoster';
-
-const freshmen_count = freshmen_data.length
+import roster_data from '../data/PlayerRoster';
 ---
 
 <MainLayout>
@@ -19,9 +17,9 @@ const freshmen_count = freshmen_data.length
 					<h1 class="text-2xl text-gray-700">How are the Huskers utilizing the Roster?</h1>
 				</p>
 				<p class="my-4 text-gray-700">
-					<p>Stats through 11 games</p>
+					<p>Stats through 12 games</p>
 					<p>Only includes Offensive and Defensive Snaps</p>
-					<p>Freshmen class details below, will add others soon</p>
+					<p class="mb-4">Roster data from <a href="https://collegefootballdata.com/">College Footbal Data</a></p>
 					<table class="min-w-full bg-white border border-gray-300">
 						<thead>
 							<tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
@@ -30,6 +28,7 @@ const freshmen_count = freshmen_data.length
 								<th class="py-3 px-6 text-left">Percentage of Snaps</th>
 								<th class="py-3 px-6 text-left">Games Played</th>
 								<th class="py-3 px-6 text-left">Players on Roster</th>
+								<th class="py-3 px-6 text-left">Details</th>
 							</tr>
 						</thead>
 						<tbody class="text-gray-600 text-sm font-light">
@@ -39,6 +38,11 @@ const freshmen_count = freshmen_data.length
 								<td class="py-3 px-6 text-left">15.54%</td>
 								<td class="py-3 px-6 text-left">157</td>
 								<td class="py-3 px-6 text-left">81</td>								
+								<td class="py-3 px-6 text-left">
+									<a href="/freshmen-review">
+										See Details
+									</a>
+								</td>
 							</tr>
 							<tr class="border-b border-gray-200 hover:bg-gray-100">
 								<td class="py-3 px-6 text-left">Sophomore</td>
@@ -67,16 +71,12 @@ const freshmen_count = freshmen_data.length
 				</p>
 			</div>
 		</div>
-	</div>
-	
-	<!-- Charts Section -->
-    <div class="w-full mx-auto px-8 py-4">
-        <div class="bg-gray-300 shadow-md rounded-lg p-10 flex flex-col md:flex-row space-x-4">
-          <div class="w-full">
-			<h2 class="text-2xl text-gray-900">Freshmen</h2>
-            <PlayerTable data={freshmen_data} />
-          </div>
-        </div>
-      </div>
-	
+	</div>	
+	<!-- Filters and Player Table Section -->
+	<div class="w-full mx-auto px-8 py-4">
+		<div class="bg-gray-300 shadow-md rounded-lg p-10">
+		  <!-- React Component with Filters -->
+		  <PlayerTableWithFilters data={roster_data} client:visible />
+		</div>
+	  </div>
 </MainLayout>
