@@ -1,5 +1,6 @@
 ---
 title: 'First post'
+slug: 'the-first-post-slug'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 08 2022'
 ---

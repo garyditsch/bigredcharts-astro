@@ -1,58 +1,32 @@
 ---
 // Component Imports
 import MainLayout from '../layouts/MainLayout.astro'
-import YPRChart from '../components/YPRChart.tsx';
-import TotalYardsChart from '../components/TotalYardsChart.tsx';
-import PossessionTimeChart from '../components/PossessionTimeChart.tsx';
-import TotalRushTDChart from '../components/RushTDChart.tsx';
+import { getCollection } from 'astro:content';
 
-
-const { isMobile = false } = Astro.props;
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <MainLayout>
-  <!-- Story Intro Section -->
-  <div id="story_intro" class="mb-8">
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <div class="flex flex-col md:flex-row">
-        
-        <!-- Text Content Column -->
-        <div class="md:w-1/3 md:pr-6">
-          <h2 class="text-2xl font-bold mb-4 text-red-600">Introduction</h2>
-          <p class="mb-4 text-gray-700">
-            On November 28, 2022, Matt Rhule held his introductory press conference and laid out his vision for the type of team he wanted to coach at Nebraska.
-          </p>
-          <p class="mb-4 text-gray-700">Characteristics of that team:</p>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Tough</li>
-            <li>Hard Working</li>
-            <li>Competitive at Everything</li>
-            <li>Physical</li>
-            <li>Balanced</li>
-            <li>Win the line of scrimmage</li>
-            <li>Fast, explosive players</li>
-            <li>Speed</li>
-            <li>Great quarterback play</li>
-            <li>Physical team that can control the line of scrimmage and game</li>
-          </ul>
-        </div>
-
-        <!-- YouTube Video Column -->
-        <div class="md:w-2/3 mt-6 md:mt-0">
-          <div class="aspect-video">
-            <iframe 
-              src="https://www.youtube.com/embed/oxEkddK9tEo?start=937" 
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-              loading="lazy"
-              class="w-full h-full rounded-lg"
-            ></iframe>
+  <section>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map(post => (
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-gray-800 truncate">{post.data.title}</h3>
+            <p class="text-sm text-gray-600 mt-2">
+              {post.data.description.length > 150 ? `${post.data.description.substring(0, 150)}...` : post.data.description}
+            </p>
+            <a 
+               href={`/blog/${post.slug}/`} 
+              class="block mt-4 text-blue-600 hover:underline text-sm font-semibold"
+            >
+              Read More →
+            </a>
           </div>
         </div>
-
-      </div>
+      ))}
     </div>
-  </div>
+  </section>
 </MainLayout>
