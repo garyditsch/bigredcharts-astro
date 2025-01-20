@@ -2,10 +2,13 @@
 // Component Imports
 import MainLayout from '../layouts/MainLayout.astro'
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+console.log(posts)
 ---
 
 <MainLayout>
@@ -13,6 +16,7 @@ const posts = (await getCollection('blog')).sort(
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map(post => (
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+         
           <div class="p-4">
             <h3 class="text-lg font-bold text-gray-800 truncate">{post.data.title}</h3>
             <p class="text-sm text-gray-600 mt-2">

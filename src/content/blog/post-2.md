@@ -1,6 +1,7 @@
 ---
 title: 'Second post'
 slug: 'the-second-post-slug'
+image: ./images/MattRhulePressConference.png
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 10 2022'
 ---
