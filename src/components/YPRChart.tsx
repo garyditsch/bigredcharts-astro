@@ -53,8 +53,6 @@ function YPRChart() {
       )
     : [];
 
-  const sortedData = filteredData.sort((a, b) => a.stat - b.stat);
-
   const chartData = {
     labels: filteredData.map(d => `${d.school}-${d.game_id}`),
     displayLabels: filteredData.map(d => d.school),

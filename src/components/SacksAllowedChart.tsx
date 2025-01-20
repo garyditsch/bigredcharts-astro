@@ -53,8 +53,6 @@ function SacksAllowedChart() {
       )
     : [];
 
-  const sortedData = filteredData.sort((a, b) => Number(b.opponent_stat_value) - Number(a.opponent_stat_value));
-
   const chartData = {
     labels: filteredData.map(d => `${d.school}-${d.game_id}`),
     displayLabels: filteredData.map(d => d.school),

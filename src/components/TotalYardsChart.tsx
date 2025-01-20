@@ -51,8 +51,6 @@ function TotalYardsChart() {
       )
     : [];
 
-  const sortedData = filteredData.sort((a, b) => a.stat - b.stat);
-
   const chartData = {
     labels: filteredData.map((d) => `${d.school}-${d.game_id}`), // Unique labels for plotting
     displayLabels: filteredData.map((d) => d.school), // Labels to display on y-axis
