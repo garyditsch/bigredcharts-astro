@@ -1,9 +1,10 @@
 ---
 title: "Matt Rhule's Vision at Introductory Press Conference"
-image: ./images/MattRhulePressConference.png
 slug: 'matt-rhules-vision-for-huskers'
 description: 'On November 28, 2022, Matt Rhule laid out his vision for the type of team that he wanted Nebraska to become. This post revisits that press conference and lists the characteristics he defined.'
 pubDate: 'November 28, 2022'
+author: 'Gary Ditsch'
+tags: ['Matt Rhule']
 ---
 
 

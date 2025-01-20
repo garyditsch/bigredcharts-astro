@@ -1,9 +1,10 @@
 ---
 title: 'Receiver Production Gained vs Lost'
-image: ''
 slug: '2025-huskers-receiver-production-gained-vs-lost'
 description: 'A look at the gained vs lost production for the Nebraska wide receiver room, heading into 2025 season.'
 pubDate: 'January 19, 2025'
+author: 'Gary Ditsch'
+tags: ['Huskers', 'Wide Receivers']
 ---
 
 
