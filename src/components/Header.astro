@@ -3,15 +3,31 @@ import { Image } from 'astro:assets';
 import profilePic from "../content/blog/images/profile-picture.png";
 ---
 
-<header class="flex items-center justify-between p-4 bg-white border-b">
-    <h1 class="text-xl font-semibold"></h1>
-    <!-- Optional: User Profile or Other Header Content -->
-    <div class="flex items-center">
-      <Image
-				src={profilePic}
-				alt="Calm Energy Image"
-				class="w-12 h-12 rounded-full"
-			/>
-      <!-- Optional: Dropdown Menu or Notifications -->
-    </div>
+<header class="flex items-center justify-between xl:justify-end py-4 px-12 bg-white border-b">
+  <div class="xl:hidden">
+    <h1 class="text-xl text-red-500 font-semibold">Big Red Charts</h1>
+  </div>
+  <!-- Optional: User Profile or Other Header Content -->
+  <div class="hidden xl:flex xl:items-center">
+    <Image
+      src={profilePic}
+      alt="Calm Energy Image"
+      class="w-12 h-12 rounded-full"
+    />
+    <!-- Optional: Dropdown Menu or Notifications -->
+  </div>
+  <div class="xl:hidden flex items-center">
+    <ul class="flex space-x-4">
+      <li>
+        <a href="/" class="text-black hover:text-red-500 hover:underline transition-colors">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="/more" class="text-black hover:text-red-500 hover:underline transition-colors">
+          More
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
