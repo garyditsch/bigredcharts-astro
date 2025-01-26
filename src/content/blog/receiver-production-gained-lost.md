@@ -14,7 +14,7 @@ The following is a look at all receiving yards, catches and touchdowns that is l
 
 That being said, this is the best picture we have on January 19th, 2025.
 
-![Total pass catching gained and lost](./images/ReceivingOut-In.png)
+![Total pass catching gained and lost](./images/BlogTwo/ReceivingOut-In.png)
 
 ## Looking at just the lost versus gained production of the receiver room
 
@@ -24,7 +24,7 @@ Why do I say that? That is mostly about where their potential and upside resides
 
 I was (and am) a very big Jaylen Lloyd fan, but I also think that your swapping his potential with Gilmore's potential.
 
-![Receiver production gained and lost](./images/ReveiverProductionInVsOut.png)
+![Receiver production gained and lost](./images/BlogTwo/ReveiverProductionInVsOut.png)
 
 ## Nebraska top receiver in terms of production, versus our top incoming production 
 
@@ -34,6 +34,6 @@ The obvious proof here is coach Rhule bringing in Dana Holgorsen for the last 3 
 
 Even as Banks ends his college career, we get a fourth year receiver in Key, who has improved each year. The touchdowns scored by Key in 2024 is concerning, however as a Husker fan living in Kentucky, I can confidently say that as bad as Nebraska's offensive coaching and game plans were in 2024, Kentucky's were just as poor.
 
-![Dane Key's Career Stats](./images/DaneKeyCareer.png)
+![Dane Key's Career Stats](./images/BlogTwo/DaneKeyCareer.png)
 
-![Jahmal Bank's Career Stats](./images/JahmalBanksCareer.png)
+![Jahmal Bank's Career Stats](./images/BlogTwo/JahmalBanksCareer.png)
