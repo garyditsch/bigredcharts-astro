@@ -6,6 +6,24 @@ import Sidebar from '../components/Sidebar.astro'
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, pubDate } = Astro.props;
+
+// ADD MY FUNCTION HERE
+const formatDate = (date: string | Date): string => {
+  const parsedDate = new Date(date);
+  if (isNaN(parsedDate.getTime())) {
+    throw new Error('Invalid date');
+  }
+
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',  // Full weekday name (e.g., "Monday")
+    day: '2-digit',   // Two-digit day (e.g., "25")
+    year: 'numeric',  // Full year (e.g., "2025")
+  })
+    .format(parsedDate)
+    .replace(', ', ' / ');
+};
+
+const formattedPubDate = formatDate(pubDate);
 ---
 
 <html lang="en">
@@ -34,7 +52,7 @@ const { title, pubDate } = Astro.props;
     <main class="flex-1 overflow-y-auto p-6 flex flex-col items-center">
       <article class="prose prose-stone mb-10 w-full">
         <h3>{title}</h3>
-        <span class="text-sm">{pubDate}</span>
+        <span class="text-sm">{formattedPubDate}</span>
         <slot />
       </article>
     </main>    
