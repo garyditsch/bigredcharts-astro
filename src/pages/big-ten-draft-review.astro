@@ -1,0 +1,14 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+import DraftHeatmap from '../components/DraftHeatmap';
+import DraftTable from '../components/DraftPlayerTable';
+
+---
+
+
+<MainLayout>
+    <h1 class="text-xl text-center font-bold">Husker Draft Picks Comparison Since Joining Big Ten</h1>
+    <DraftHeatmap client:only="react" />
+    <DraftTable client:only="react" />
+</MainLayout>
