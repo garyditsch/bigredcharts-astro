@@ -3,12 +3,25 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import DraftHeatmap from '../components/DraftHeatmap';
 import DraftTable from '../components/DraftPlayerTable';
+import TopFiftyDraftTable from '../components/TopFiftyDraft';
 
 ---
 
 
 <MainLayout>
-    <h1 class="text-xl text-center font-bold">Husker Draft Picks Comparison Since Joining Big Ten</h1>
+    <div class="bg-white p-2 mt-4">
+        <h2 class="text-xl font-bold text-center">NFL Draft Picks by Year and School</h2>
+        <h3 class="text-md text-center">2012 - 2024 (Since Nebraska joined the Big Ten)</h3>
+    </div>
     <DraftHeatmap client:only="react" />
+    <div class="bg-white p-2 mt-8">
+        <h2 class="text-xl font-bold text-center">Top Fifty Colleges based on NFL Draft Picks</h2>
+        <h3 class="text-md text-center">2012 - 2024 (Since Nebraska joined the Big Ten)</h3>
+    </div>
+    <TopFiftyDraftTable client:only="react" />
+    <div class="bg-white p-2 mt-8">
+        <h2 class="text-xl font-bold text-center">Nebraska's NFL Draft Picks</h2>
+        <h3 class="text-md text-center">2012 - 2024 (Since Nebraska joined the Big Ten)</h3>
+    </div>
     <DraftTable client:only="react" />
 </MainLayout>

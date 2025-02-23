@@ -27,7 +27,7 @@ const DraftTable: React.FC = () => {
 
   return (
     <div className="w-full p-4">
-      <h2 className="text-2xl font-bold text-center mb-4">NFL Draft Picks</h2>
+      {/* <h2 className="text-2xl font-bold text-center mb-4">NFL Draft Picks</h2> */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
           <thead className="bg-red-800 text-white">

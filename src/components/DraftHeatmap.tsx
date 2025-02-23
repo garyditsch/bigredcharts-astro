@@ -39,7 +39,7 @@ const DraftHeatmap = () => {
   return (
     <div className="w-full p-4">
       {/* Title */}
-      <h2 className="text-xl font-bold text-center mb-4">NFL Draft Picks by Year and School</h2>
+      {/* <h2 className="text-xl font-bold text-center mb-4">NFL Draft Picks by Year and School</h2> */}
 
       {/* Heatmap Grid */}
       <div className="overflow-x-auto">
