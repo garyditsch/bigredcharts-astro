@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -21,7 +21,7 @@ const schoolOptions = [
   { value: 'UCLA', label: 'UCLA' },
   { value: 'USC', label: 'USC' },
   { value: 'Washington', label: 'Washington' },
-  { value: 'Wisconsin', label: 'Wisconsin' },
+  { value: 'Wisconsin', label: 'Wisconsin' }
 ];
 
 // Mock data
@@ -29,37 +29,40 @@ const allData = dataframes;
 
 const allOption = { value: '*', label: 'Select All' };
 
-function TotalYardsChart() {
+function YPRChart() {
   const [selectedSchools, setSelectedSchools] = useState<any[]>([
     {
-      value: 'Nebraska',
-      label: 'Nebraska',
-    },
+        "value": "Nebraska",
+        "label": "Nebraska"
+    }
   ]);
 
   const handleSelectChange = (selected: any) => {
     if (selected && selected.some((option: any) => option.value === allOption.value)) {
+      // If "Select All" is selected, set all options
       setSelectedSchools(schoolOptions);
     } else {
+      // Otherwise, set the selected options
       setSelectedSchools(selected);
     }
   };
 
   const filteredData = selectedSchools.length
-    ? allData.Multi_School_TotalYards.filter((entry) =>
-        selectedSchools.some((school) => school.value === entry.school)
+    ? allData.Multi_School_YPR.filter(entry =>
+        selectedSchools.some(school => school.value === entry.school)
       )
     : [];
 
+  filteredData.sort((a, b) => a.stat - b.stat);
+
   const chartData = {
-    labels: filteredData.map((d) => `${d.school}-${d.game_id}`), // Unique labels for plotting
-    displayLabels: filteredData.map((d) => d.school), // Labels to display on y-axis
-    schools: filteredData.map((d) => d.school),
-    opponents: filteredData.map((d) =>
-      d.home_team === d.school ? d.away_team : d.home_team
-    ),
-    statValues: filteredData.map((d) => d.stat.toString()), // Convert numbers to strings
+    labels: filteredData.map(d => `${d.school}-${d.game_id}`),
+    displayLabels: filteredData.map(d => d.school),
+    schools: filteredData.map(d => d.school),
+    opponents: filteredData.map(d => (d.home_team === d.school ? d.away_team : d.home_team)),
+    statValues: filteredData.map(d => d.stat.toString()) // Convert numbers to strings
   };
+
 
   // Calculate the chart height
   const barHeight = 30; // Height per bar in pixels
@@ -69,7 +72,7 @@ function TotalYardsChart() {
 
   return (
     <div>
-      <Select
+      <Select 
         options={[allOption, ...schoolOptions]}
         value={selectedSchools}
         isMulti
@@ -80,27 +83,25 @@ function TotalYardsChart() {
       />
 
       {chartData.schools.length > 0 ? (
-        <Plot
+       <Plot
           data={[
             {
               x: chartData.statValues,
-              y: chartData.labels, // Use unique labels for plotting
+              y: chartData.labels,
               text: chartData.statValues,
               type: 'bar',
               orientation: 'h',
               marker: {
-                color: chartData.schools.map((school) =>
-                  school === 'Nebraska' ? 'red' : 'lightgray'
-                ),
+                color: chartData.schools.map(school => school === 'Nebraska' ? 'red' : 'lightgray'),
               },
-              hoverinfo: 'y+text',
+              hoverinfo: 'y+text', // Fixed hoverinfo
               name: 'Schools',
-            },
+            }
           ]}
           layout={{
             autosize: true,
-            title: 'Total Rushing Yards',
-            xaxis: { title: 'Total Rushing Yards' },
+            title: 'Yards Per Rush Attempt',
+            xaxis: { title: 'Yards Per Rush Attempt' },
             yaxis: {
               title: '',
               automargin: true,
@@ -109,17 +110,17 @@ function TotalYardsChart() {
               ticktext: chartData.displayLabels, // Labels to display (school names)
             },
             annotations: chartData.labels.map((label, index) => ({
-              x: chartData.statValues[index],
-              y: label, // Use unique label for alignment
+              x: chartData.statValues[index],  // Align annotation with bar
+              y: label,  // Align annotation with y axis school
               xref: 'x',
               yref: 'y',
-              text: chartData.opponents[index] + ' (opp)',
-              xanchor: 'left',
-              showarrow: false,
+              text: chartData.opponents[index] + ' (opp)',  // Display the opponent name
+              xanchor: 'left',  // Position text on the right of the chart
+              showarrow: false,  // No arrows, just text
               align: 'right',
-              xshift: 10,
+              xshift: 10  // Shift text a bit to the right of the bars
             })),
-            margin: { l: 100, r: 150 },
+            margin: { l: 100, r: 150 },  // Adjust right margin to make room for annotations
           }}
           useResizeHandler={true}
           style={{ width: '100%', height: `${chartHeight}px` }}
@@ -132,4 +133,4 @@ function TotalYardsChart() {
   );
 }
 
-export default TotalYardsChart;
+export default YPRChart;

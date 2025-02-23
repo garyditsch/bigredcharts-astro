@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -29,7 +29,7 @@ const allData = dataframes;
 
 const allOption = { value: '*', label: 'Select All' };
 
-function TflAllowedChart() {
+function QBHurriesAllowedChart() {
   const [selectedSchools, setSelectedSchools] = useState<any[]>([
     {
         "value": "Nebraska",
@@ -48,7 +48,7 @@ function TflAllowedChart() {
   };
 
   const filteredData = selectedSchools.length
-    ? allData.Multi_School_Tfl.filter(entry =>
+    ? allData.Multi_School_QBHurries.filter(entry =>
         selectedSchools.some(school => school.value === entry.school)
       )
     : [];
@@ -131,4 +131,4 @@ function TflAllowedChart() {
   );
 }
 
-export default TflAllowedChart;
+export default QBHurriesAllowedChart;

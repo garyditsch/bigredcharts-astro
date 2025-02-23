@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -29,12 +29,12 @@ const allData = dataframes;
 
 const allOption = { value: '*', label: 'Select All' };
 
-function QBHurriesAllowedChart() {
+function RushTDChart() {
   const [selectedSchools, setSelectedSchools] = useState<any[]>([
     {
-        "value": "Nebraska",
-        "label": "Nebraska"
-    }
+      value: 'Nebraska',
+      label: 'Nebraska',
+    },
   ]);
 
   const handleSelectChange = (selected: any) => {
@@ -48,29 +48,33 @@ function QBHurriesAllowedChart() {
   };
 
   const filteredData = selectedSchools.length
-    ? allData.Multi_School_QBHurries.filter(entry =>
-        selectedSchools.some(school => school.value === entry.school)
+    ? allData.Multi_School_RushTD.filter((entry) =>
+        selectedSchools.some((school) => school.value === entry.school)
       )
     : [];
 
-  const chartData = {
-    labels: filteredData.map(d => `${d.school}-${d.game_id}`),
-    displayLabels: filteredData.map(d => d.school),
-    schools: filteredData.map(d => d.school),
-    opponents: filteredData.map(d => (d.school === d.school ? d.opponent : d.school)),
-    statValues: filteredData.map(d => d.opponent_stat_value.toString()) // Convert numbers to strings
-  };
+  filteredData.sort((a, b) => a.stat - b.stat);
 
+  const chartData = {
+    labels: filteredData.map((d) => `${d.school}-${d.game_id}`), // Unique labels for plotting
+    displayLabels: filteredData.map((d) => d.school), // Labels to display on y-axis
+    schools: filteredData.map((d) => d.school),
+    opponents: filteredData.map((d) =>
+      d.home_team === d.school ? d.away_team : d.home_team
+    ),
+    statValues: filteredData.map((d) => d.stat.toString()), // Convert numbers to strings
+  };
 
   // Calculate the chart height
   const barHeight = 30; // Height per bar in pixels
+  
   const minChartHeight = 400; // or any suitable minimum height
   const calculatedHeight = chartData.labels.length * barHeight + 100;
   const chartHeight = Math.max(minChartHeight, calculatedHeight);
 
   return (
     <div>
-      <Select 
+      <Select
         options={[allOption, ...schoolOptions]}
         value={selectedSchools}
         isMulti
@@ -81,25 +85,27 @@ function QBHurriesAllowedChart() {
       />
 
       {chartData.schools.length > 0 ? (
-       <Plot
+        <Plot
           data={[
             {
               x: chartData.statValues,
-              y: chartData.labels,
+              y: chartData.labels, // Use unique labels for plotting
               text: chartData.statValues,
               type: 'bar',
               orientation: 'h',
               marker: {
-                color: chartData.schools.map(school => school === 'Nebraska' ? 'red' : 'lightgray'),
+                color: chartData.schools.map((school) =>
+                  school === 'Nebraska' ? 'red' : 'lightgray'
+                ),
               },
-              hoverinfo: 'y+text', // Fixed hoverinfo
+              hoverinfo: 'y+text',
               name: 'Schools',
-            }
+            },
           ]}
           layout={{
             autosize: true,
-            title: 'Tackles for Loss Allowed',
-            xaxis: { title: 'Tackles for Loss Allowed' },
+            title: 'Total Rushing Touchdowns',
+            xaxis: { title: 'Total Rushing Touchdowns' },
             yaxis: {
               title: '',
               automargin: true,
@@ -108,17 +114,18 @@ function QBHurriesAllowedChart() {
               ticktext: chartData.displayLabels, // Labels to display (school names)
             },
             annotations: chartData.labels.map((label, index) => ({
-              x: chartData.statValues[index],  // Align annotation with bar
-              y: label,  // Align annotation with y axis school
+              x: chartData.statValues[index], // Align annotation with bar
+              y: label, // Use unique label for alignment
               xref: 'x',
               yref: 'y',
-              text: chartData.opponents[index] + ' (opp)',  // Display the opponent name
-              xanchor: 'left',  // Position text on the right of the chart
-              showarrow: false,  // No arrows, just text
+              text: chartData.opponents[index] + ' (opp)', // Display the opponent name
+              xanchor: 'left',
+              showarrow: false,
               align: 'right',
-              xshift: 10  // Shift text a bit to the right of the bars
+              xshift: 10,
             })),
-            margin: { l: 100, r: 150 },  // Adjust right margin to make room for annotations
+            height: chartHeight,
+            margin: { l: 100, r: 150 }, // Adjust margins as needed
           }}
           useResizeHandler={true}
           style={{ width: '100%', height: `${chartHeight}px` }}
@@ -131,4 +138,4 @@ function QBHurriesAllowedChart() {
   );
 }
 
-export default QBHurriesAllowedChart;
+export default RushTDChart;

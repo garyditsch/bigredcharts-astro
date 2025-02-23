@@ -1,0 +1,57 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+
+const charts = [
+	{
+		title: 'Yards per Attempt',
+		description: 'Average yards per rushing attempt for Nebraska and other Big Ten teams. Visualize all games, Huskers only and see season ranking.',
+		link: 'offense/rushing-offense-yards-per-rush'
+	},
+	{
+		title: 'Total Yards Rushing',
+		description: 'A look at the total yards rushed per game for all Big Ten Teams, including averages per game.',
+		link: 'offense/rushing-offense-total-yards-per-game'
+	},
+	{
+		title: 'Total Rushing Touchdowns',
+		description: 'Were the Huskers successful at getting the football into the end-zone, via a rushing attempt?',
+		link: 'offense/rushing-offense-total-rushing-touchdowns'
+	}
+]
+
+---
+
+
+<MainLayout>
+	<!-- Story Intro Section -->
+	<div class="grid grid-cols-1 mx-8 mb-8">
+		<!-- Text Content Column -->
+		<div class="md:w-full md:pr-8">
+			<p class="mb-4 text-gray-700">
+				<h1 class="text-2xl text-red-700">How does the Husker run game perform?</h1>
+			</p>
+		</div>
+	</div>
+
+	<section>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-8">
+		  {charts.map(chart => (
+			<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+			 
+			  <div class="p-4">
+				<h3 class="text-lg font-bold text-gray-800 truncate">{chart.title}</h3>
+				<p class="text-sm text-gray-600 mt-2">
+				  {chart.description.length > 150 ? `${chart.description.substring(0, 150)}...` : chart.description}
+				</p>
+				<a 
+				  href={`/${chart.link}/`} 
+				  class="block mt-4 text-blue-600 hover:underline text-sm font-semibold"
+				>
+				  View Chart →
+				</a>
+			  </div>
+			</div>
+		  ))}
+		</div>
+	</section>

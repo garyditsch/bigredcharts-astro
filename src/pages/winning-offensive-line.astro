@@ -1,0 +1,62 @@
+---
+// Component Imports
+import MainLayout from '../layouts/MainLayout.astro';
+import SchoolStatsTable from '../components/SchoolStatsTable.tsx';
+import dataframes from '../data/BoxScoreAnalysis';
+
+const allData = dataframes;
+
+const charts = [
+	{
+		title: 'Sack Allowed',
+		description: 'Is the line allowing sacks? How do they compare to other schools in Big Ten play?',
+		link: 'offense/offensive-line-sacks-allowed'
+	},
+	{
+		title: 'QB Hurries Allowed',
+		description: 'Does the line provide time for Dylan Raiola?',
+		link: 'offense/offensive-line-qb-hurries-allowed'
+	},
+	{
+		title: 'Tackles for Loss Allowed',
+		description: 'How often are offensive players getting brought down behind the line of scrimmage?',
+		link: 'offense/offensive-line-tackles-for-loss-allowed'
+	}
+]
+
+---
+
+
+<MainLayout>
+	<!-- Story Intro Section -->
+	<div class="grid grid-cols-1 mx-8 mb-8">
+		<!-- Text Content Column -->
+		<div class="md:w-full md:pr-8">
+			<p class="mb-4 text-gray-700">
+				<h1 class="text-2xl text-red-700">How does the Offensive Line perform?</h1>
+			</p>
+		</div>
+	</div>
+
+	<section>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-8">
+		  {charts.map(chart => (
+			<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+			 
+			  <div class="p-4">
+				<h3 class="text-lg font-bold text-gray-800 truncate">{chart.title}</h3>
+				<p class="text-sm text-gray-600 mt-2">
+				  {chart.description.length > 150 ? `${chart.description.substring(0, 150)}...` : chart.description}
+				</p>
+				<a 
+				  href={`/${chart.link}/`} 
+				  class="block mt-4 text-blue-600 hover:underline text-sm font-semibold"
+				>
+				  View Chart →
+				</a>
+			  </div>
+			</div>
+		  ))}
+		</div>
+	</section>
+</MainLayout>

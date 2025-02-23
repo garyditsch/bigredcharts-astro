@@ -1,0 +1,31 @@
+---
+// Component Imports
+import MainLayout from '../../layouts/MainLayout.astro';
+import TotalRushTDChart from '../../components/offense/RushTDChart.tsx';
+import SchoolStatsTable from '../../components/SchoolStatsTable.tsx';
+import calculateSchoolAverages from '../../utils/statAverage';
+import dataframes from '../../data/BoxScoreAnalysis';
+import type { SchoolAverage } from '../../utils/statAverage';
+
+const allData = dataframes;
+const rushTdAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_RushTD, 'stat', true)
+---
+
+<MainLayout>
+	<!-- Total Rush Touchdowns -->
+	<div class="bg-white p-2 mt-4">
+        <h2 class="text-xl font-bold text-center">Total Rushing Touchdowns per Game for the Huskers</h2>
+        <h3 class="text-md text-center">2024 Season (Big Ten Games Only)</h3>
+    </div>
+	<!-- Total Rush Touchdowns -->
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-8 my-12">
+		<div class="bg-white shadow-md rounded-lg p-6 md:col-span-2">
+			<div class="text-red-500 text-2xl font-bold mb-4">Total Rushing Touchdowns</div>
+			<TotalRushTDChart client:only="react"/>
+		</div>
+		<div class="bg-white shadow-md rounded-lg p-6">
+			<div class="text-red-500 text-2xl font-bold mb-2">Rushing Touchdowns</div>
+			<SchoolStatsTable data={rushTdAverages} />
+		</div>
+	</div>
+</MainLayout>
