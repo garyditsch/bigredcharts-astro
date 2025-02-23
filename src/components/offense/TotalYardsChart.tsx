@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -21,7 +21,7 @@ const schoolOptions = [
   { value: 'UCLA', label: 'UCLA' },
   { value: 'USC', label: 'USC' },
   { value: 'Washington', label: 'Washington' },
-  { value: 'Wisconsin', label: 'Wisconsin' }
+  { value: 'Wisconsin', label: 'Wisconsin' },
 ];
 
 // Mock data
@@ -29,38 +29,40 @@ const allData = dataframes;
 
 const allOption = { value: '*', label: 'Select All' };
 
-function SacksAllowedChart() {
+function TotalYardsChart() {
   const [selectedSchools, setSelectedSchools] = useState<any[]>([
     {
-        "value": "Nebraska",
-        "label": "Nebraska"
-    }
+      value: 'Nebraska',
+      label: 'Nebraska',
+    },
   ]);
 
   const handleSelectChange = (selected: any) => {
     if (selected && selected.some((option: any) => option.value === allOption.value)) {
-      // If "Select All" is selected, set all options
       setSelectedSchools(schoolOptions);
     } else {
-      // Otherwise, set the selected options
       setSelectedSchools(selected);
     }
   };
 
   const filteredData = selectedSchools.length
-    ? allData.Multi_School_Sacks.filter(entry =>
-        selectedSchools.some(school => school.value === entry.school)
+    ? allData.Multi_School_TotalYards.filter((entry) =>
+        selectedSchools.some((school) => school.value === entry.school)
       )
     : [];
 
-  const chartData = {
-    labels: filteredData.map(d => `${d.school}-${d.game_id}`),
-    displayLabels: filteredData.map(d => d.school),
-    schools: filteredData.map(d => d.school),
-    opponents: filteredData.map(d => (d.school === d.school ? d.opponent : d.school)),
-    statValues: filteredData.map(d => d.opponent_stat_value.toString()) // Convert numbers to strings
-  };
+  // Sort filteredData from biggest to smallest by stat value
+  filteredData.sort((a, b) => a.stat - b.stat);
 
+  const chartData = {
+    labels: filteredData.map((d) => `${d.school}-${d.game_id}`), // Unique labels for plotting
+    displayLabels: filteredData.map((d) => d.school), // Labels to display on y-axis
+    schools: filteredData.map((d) => d.school),
+    opponents: filteredData.map((d) =>
+      d.home_team === d.school ? d.away_team : d.home_team
+    ),
+    statValues: filteredData.map((d) => d.stat.toString()), // Convert numbers to strings
+  };
 
   // Calculate the chart height
   const barHeight = 30; // Height per bar in pixels
@@ -70,7 +72,7 @@ function SacksAllowedChart() {
 
   return (
     <div>
-      <Select 
+      <Select
         options={[allOption, ...schoolOptions]}
         value={selectedSchools}
         isMulti
@@ -81,25 +83,27 @@ function SacksAllowedChart() {
       />
 
       {chartData.schools.length > 0 ? (
-       <Plot
+        <Plot
           data={[
             {
               x: chartData.statValues,
-              y: chartData.labels,
+              y: chartData.labels, // Use unique labels for plotting
               text: chartData.statValues,
               type: 'bar',
               orientation: 'h',
               marker: {
-                color: chartData.schools.map(school => school === 'Nebraska' ? 'red' : 'lightgray'),
+                color: chartData.schools.map((school) =>
+                  school === 'Nebraska' ? 'red' : 'lightgray'
+                ),
               },
-              hoverinfo: 'y+text', // Fixed hoverinfo
+              hoverinfo: 'y+text',
               name: 'Schools',
-            }
+            },
           ]}
           layout={{
             autosize: true,
-            title: 'Sacks Allowed',
-            xaxis: { title: 'Sacks' },
+            title: 'Total Rushing Yards',
+            xaxis: { title: 'Total Rushing Yards' },
             yaxis: {
               title: '',
               automargin: true,
@@ -108,17 +112,17 @@ function SacksAllowedChart() {
               ticktext: chartData.displayLabels, // Labels to display (school names)
             },
             annotations: chartData.labels.map((label, index) => ({
-              x: chartData.statValues[index],  // Align annotation with bar
-              y: label,  // Align annotation with y axis school
+              x: chartData.statValues[index],
+              y: label, // Use unique label for alignment
               xref: 'x',
               yref: 'y',
-              text: chartData.opponents[index] + ' (opp)',  // Display the opponent name
-              xanchor: 'left',  // Position text on the right of the chart
-              showarrow: false,  // No arrows, just text
+              text: chartData.opponents[index] + ' (opp)',
+              xanchor: 'left',
+              showarrow: false,
               align: 'right',
-              xshift: 10  // Shift text a bit to the right of the bars
+              xshift: 10,
             })),
-            margin: { l: 100, r: 150 },  // Adjust right margin to make room for annotations
+            margin: { l: 100, r: 150 },
           }}
           useResizeHandler={true}
           style={{ width: '100%', height: `${chartHeight}px` }}
@@ -131,4 +135,4 @@ function SacksAllowedChart() {
   );
 }
 
-export default SacksAllowedChart;
+export default TotalYardsChart;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -29,7 +29,7 @@ const allData = dataframes;
 
 const allOption = { value: '*', label: 'Select All' };
 
-function YPRChart() {
+function SacksAllowedChart() {
   const [selectedSchools, setSelectedSchools] = useState<any[]>([
     {
         "value": "Nebraska",
@@ -48,7 +48,7 @@ function YPRChart() {
   };
 
   const filteredData = selectedSchools.length
-    ? allData.Multi_School_YPR.filter(entry =>
+    ? allData.Multi_School_Sacks.filter(entry =>
         selectedSchools.some(school => school.value === entry.school)
       )
     : [];
@@ -57,8 +57,8 @@ function YPRChart() {
     labels: filteredData.map(d => `${d.school}-${d.game_id}`),
     displayLabels: filteredData.map(d => d.school),
     schools: filteredData.map(d => d.school),
-    opponents: filteredData.map(d => (d.home_team === d.school ? d.away_team : d.home_team)),
-    statValues: filteredData.map(d => d.stat.toString()) // Convert numbers to strings
+    opponents: filteredData.map(d => (d.school === d.school ? d.opponent : d.school)),
+    statValues: filteredData.map(d => d.opponent_stat_value.toString()) // Convert numbers to strings
   };
 
 
@@ -98,8 +98,8 @@ function YPRChart() {
           ]}
           layout={{
             autosize: true,
-            title: 'Yards Per Rush Attempt',
-            xaxis: { title: 'Yards Per Rush Attempt' },
+            title: 'Sacks Allowed',
+            xaxis: { title: 'Sacks' },
             yaxis: {
               title: '',
               automargin: true,
@@ -131,4 +131,4 @@ function YPRChart() {
   );
 }
 
-export default YPRChart;
+export default SacksAllowedChart;

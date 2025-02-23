@@ -1,34 +1,30 @@
 ---
 // Component Imports
 import MainLayout from '../../layouts/MainLayout.astro';
-import YPRChart from '../../components/offense/YPRChart.tsx';
+import SacksAllowedChart from '../../components/offense/SacksAllowedChart.tsx';
 import SchoolStatsTable from '../../components/SchoolStatsTable.tsx';
 import calculateSchoolAverages from '../../utils/statAverage';
 import dataframes from '../../data/BoxScoreAnalysis';
 import type { SchoolAverage } from '../../utils/statAverage';
 
 const allData = dataframes;
-const yprAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_YPR, 'stat', true)
+const sacksAverages: SchoolAverage[] = calculateSchoolAverages(allData.Multi_School_Sacks, 'opponent_stat_value', false)
 ---
 
 <MainLayout>
-	<!-- Yards Per Rush -->
+	<!-- Sacks Allowed -->
 	<div class="bg-white p-2 mt-4">
-        <h2 class="text-xl font-bold text-center">Yards per Rush for the Huskers</h2>
+        <h2 class="text-xl font-bold text-center">Sacks Allowed per Game for the Huskers</h2>
         <h3 class="text-md text-center">2024 Season (Big Ten Games Only)</h3>
     </div>
 	<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-8 my-12">
-		<!-- Left Column (spans 2/3rd) -->
 		<div class="bg-white shadow-md rounded-lg p-6 md:col-span-2">
-		  <div class="text-red-500 text-2xl font-bold">Yards Per Rush Chart</div>
-		  <div class="text-sm mb-4">(Select additional schools for more data)</div>
-		  <YPRChart client:only="react"/>
+			<div class="text-red-500 text-2xl font-bold mb-4">Sacks Allowed</div>
+			<SacksAllowedChart client:only="react"/>
 		</div>
-	  
-		<!-- Right Column (spans 1/3rd) -->
 		<div class="bg-white shadow-md rounded-lg p-6">
-		  <div class="text-red-500 text-2xl font-bold mb-2">Yards Per Rush</div>
-		  <SchoolStatsTable data={yprAverages} />
+			<div class="text-red-500 text-2xl font-bold mb-2">Sacks Allowed</div>
+			<SchoolStatsTable data={sacksAverages} />
 		</div>
 	</div>
 </MainLayout>

@@ -1,26 +1,22 @@
 ---
 // Component Imports
 import MainLayout from '../layouts/MainLayout.astro';
-import SchoolStatsTable from '../components/SchoolStatsTable.tsx';
-import dataframes from '../data/BoxScoreAnalysis';
-
-const allData = dataframes;
 
 const charts = [
 	{
-		title: 'Sack Allowed',
-		description: 'Is the line allowing sacks? How do they compare to other schools in Big Ten play?',
-		link: 'offense/offensive-line-sacks-allowed'
+		title: 'Yards per Attempt',
+		description: 'Average yards per rushing attempt for Nebraska and other Big Ten teams. Visualize all games, Huskers only and see season ranking.',
+		link: 'offense/rushing-offense-yards-per-rush'
 	},
 	{
-		title: 'QB Hurries Allowed',
-		description: 'Does the line provide time for Dylan Raiola?',
-		link: 'offense/offensive-line-qb-hurries-allowed'
+		title: 'Total Yards Rushing',
+		description: 'A look at the total yards rushed per game for all Big Ten Teams, including averages per game.',
+		link: 'offense/rushing-offense-total-yards-per-game'
 	},
 	{
-		title: 'Tackles for Loss Allowed',
-		description: 'How often are offensive players getting brought down behind the line of scrimmage?',
-		link: 'offense/offensive-line-tackles-for-loss-allowed'
+		title: 'Total Rushing Touchdowns',
+		description: 'Were the Huskers successful at getting the football into the end-zone, via a rushing attempt?',
+		link: 'offense/rushing-offense-total-rushing-touchdowns'
 	}
 ]
 
@@ -33,7 +29,7 @@ const charts = [
 		<!-- Text Content Column -->
 		<div class="md:w-full md:pr-8">
 			<p class="mb-4 text-gray-700">
-				<h1 class="text-2xl text-red-700">How does the Offensive Line perform?</h1>
+				<h1 class="text-2xl text-red-700">How does the Husker run game perform?</h1>
 			</p>
 		</div>
 	</div>
@@ -59,4 +55,3 @@ const charts = [
 		  ))}
 		</div>
 	</section>
-</MainLayout>

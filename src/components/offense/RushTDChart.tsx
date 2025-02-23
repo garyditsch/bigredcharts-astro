@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Select from 'react-select';
-import dataframes from '../data/BoxScoreAnalysis';
+import dataframes from '../../data/BoxScoreAnalysis';
 
 const schoolOptions = [
   { value: 'Illinois', label: 'Illinois' },
@@ -52,6 +52,8 @@ function RushTDChart() {
         selectedSchools.some((school) => school.value === entry.school)
       )
     : [];
+
+  filteredData.sort((a, b) => a.stat - b.stat);
 
   const chartData = {
     labels: filteredData.map((d) => `${d.school}-${d.game_id}`), // Unique labels for plotting
